@@ -1,4 +1,5 @@
-export const shakespeareBooks = [
+import { BookWithStock } from "../types/book";
+export const shakespeareBooks: BookWithStock[] = [
   {
     book: {
       title: "Hamlet",
@@ -111,7 +112,7 @@ export const shakespeareBooks = [
   },
 ];
 
-export const rowlingBooks = [
+export const rowlingBooks: BookWithStock[] = [
   {
     book: {
       title: "Harry Potter and the Philosopher's Stone",

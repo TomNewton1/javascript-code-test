@@ -1,6 +1,6 @@
-import axios from "axios";
-
+import axios, { AxiosResponse } from "axios";
 import { server } from "./mocks/server";
+import { BookWithStock } from "./types/book";
 
 server.listen();
 class BookSearchApiClient {
@@ -8,7 +8,7 @@ class BookSearchApiClient {
 
   async getBooksByAuthor(authorName: string, limit: number) {
     try {
-      const response = await axios.get(
+      const response: AxiosResponse<BookWithStock[]> = await axios.get(
         `http://api.book-seller-example.com/by-author`,
         {
           params: {
@@ -20,8 +20,7 @@ class BookSearchApiClient {
       );
 
       if (this.format === "json") {
-        const json = response.data;
-        return json.map((item: any) => ({
+        return response.data.map((item) => ({
           title: item.book.title,
           author: item.book.author,
           isbn: item.book.isbn,
@@ -30,9 +29,16 @@ class BookSearchApiClient {
         }));
       }
 
+      //TODO: Handle XML response
       if (this.format === "xml") {
+        return [];
       }
     } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.error("Axios error:", error.response?.status, error.message);
+      } else {
+        console.error("Unexpected error:", error);
+      }
       throw error;
     }
   }
