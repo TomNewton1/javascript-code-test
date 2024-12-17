@@ -1,4 +1,7 @@
-import BookSearchApiClient from "./BookSearchApiClient";
+import { BookSearchApiClient, BookApiA } from "./BookSearchApiClient";
 
-const client = new BookSearchApiClient("json");
-const booksByShakespeare = client.getBooksByAuthor("Shakespeare", 10);
+const bookApiA = new BookApiA();
+const client = new BookSearchApiClient(bookApiA, "json");
+
+const books = await client.getBooksByAuthor("Shakespeare", 2);
+console.log(books);
