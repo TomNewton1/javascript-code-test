@@ -6,7 +6,7 @@ export class BookApiA implements BookApi {
   baseUrl = "http://api.book-seller-example.com/by-author";
 
   async getBooksByAuthor(authorName: string, limit: number, format: Format) {
-    return this.fetchData({ authorName, limit }, format);
+    return this.fetchData({ q: authorName, limit }, format);
   }
 
   async fetchData(
@@ -17,7 +17,7 @@ export class BookApiA implements BookApi {
       const response: AxiosResponse<BookWithStock[]> = await axios.get(
         this.baseUrl,
         {
-          params: queryParams,
+          params: { ...queryParams, format },
         }
       );
 
