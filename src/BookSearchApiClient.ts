@@ -7,7 +7,7 @@ server.listen();
 export class BookSearchApiClient {
   constructor(
     private apiInterface: ApiInterface,
-    private format: "json" | "xml"
+    private format: "json" | "xml" // TODO: make this a constant
   ) {}
 
   async getBooksByAuthor(authorName: string, limit: number) {
@@ -26,6 +26,7 @@ export class BookApiA implements ApiInterface {
     format: "json" | "xml"
   ) {
     try {
+      // TODO: Should this be moved out into seperate function?
       const response: AxiosResponse<BookWithStock[]> = await axios.get(
         this.baseUrl,
         {

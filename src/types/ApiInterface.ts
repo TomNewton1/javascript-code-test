@@ -10,5 +10,5 @@ export interface ApiInterface {
     authorName: string,
     limit: number,
     format: "json" | "xml"
-  ): Promise<FlatBookWithStock[]>;
+  ): Promise<FlatBookWithStock[]>; // TODO: Make this generic
 }
