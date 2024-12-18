@@ -1,3 +1,5 @@
+import { Format } from "./bookSearchApiClient";
+
 export interface FlatBookWithStock {
   title: string;
   author: string;
@@ -5,10 +7,10 @@ export interface FlatBookWithStock {
   quantity: number;
   price: number;
 }
-export interface ApiInterface {
+export interface BookApi {
   getBooksByAuthor(
     authorName: string,
     limit: number,
-    format: "json" | "xml"
-  ): Promise<FlatBookWithStock[]>; // TODO: Make this generic
+    format: Format
+  ): Promise<FlatBookWithStock[]>;
 }

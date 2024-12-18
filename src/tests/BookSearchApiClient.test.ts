@@ -1,10 +1,11 @@
 import { expect, test } from "vitest";
-import { BookSearchApiClient, BookApiA } from "../BookSearchApiClient";
+import { BookSearchApiClient } from "../BookSearchApiClient";
 import { shakespeareBooks, rowlingBooks } from "../mocks/fixtures";
+import { BookApiA } from "../bookApis/BookApiA";
 
 test("getBooksByAuthor returns first 2 books by Shakespeare", async () => {
-  const apiInterface = new BookApiA();
-  const client = new BookSearchApiClient(apiInterface, "json");
+  const api = new BookApiA();
+  const client = new BookSearchApiClient(api, "json");
 
   const books = await client.getBooksByAuthor("Shakespeare", 2);
 
@@ -14,8 +15,8 @@ test("getBooksByAuthor returns first 2 books by Shakespeare", async () => {
 });
 
 test("getBooksByAuthor returns first 2 books by Rowling", async () => {
-  const apiInterface = new BookApiA();
-  const client = new BookSearchApiClient(apiInterface, "json");
+  const api = new BookApiA();
+  const client = new BookSearchApiClient(api, "json");
 
   const books = await client.getBooksByAuthor("Rowling", 2);
 
